@@ -1,0 +1,50 @@
+name: Personal Website OCI CI
+
+on:
+  push: 
+    branches: [ main ]
+
+jobs: 
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v3
+    
+    - name: Setup Node
+      uses: actions/setup-node@v3
+      with:
+        node-version: 20
+        
+    - name: Install dependencies  
+      run: npm ci
+      
+    - name: Build
+      run: npm run build
+
+    - name: Upload artifact  
+      uses: actions/upload-artifact@v3
+      with:
+        name: next-app
+        path: ./.next
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment: production
+
+    steps:
+    - name: Download artifact
+      uses: actions/download-artifact@v3
+      with: 
+        name: next-app
+        path: ./next-app
+
+    - name: Deploy to OCI Compute
+      env:
+        DEPLOY_SCRIPT: ${{ secrets.DEPLOY_SCRIPT }} 
+        PRIVATE_KEY: ${{ secrets.OCI_PRIVATE_KEY }}
+        PUBLIC_KEY: ${{ secrets.OCI_PUBLIC_KEY }}  
+        REMOTE_HOST: ${{ secrets.REMOTE_HOST }}
+      run: | 
+        echo "$PRIVATE_KEY" > private_key && chmod 600 private_key
+        echo "$PUBLIC_KEY" > public_key 
+        bash -c "$DEPLOY_SCRIPT"
