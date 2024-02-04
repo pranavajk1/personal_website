@@ -57,7 +57,7 @@ jobs:
     #     echo "$PUBLIC_KEY" > public_key 
     #     bash -c "$DEPLOY_SCRIPT"
     - name: Copy to Remote Server
-      uses: pierrickdelrieu/scp-action@v0.1.1
+      uses: pierrickdelrieu/scp-action@v0.1.0
       with:
         host: ${{ secrets.REMOTE_HOST }}
         ssh_username: ${{ secrets.SSH_USERNAME }}
