@@ -46,13 +46,22 @@ jobs:
         name: next-app
         path: ./next-app
 
-    - name: Deploy to OCI Compute
-      env:
-        DEPLOY_SCRIPT: ${{ secrets.DEPLOY_SCRIPT }} 
-        PRIVATE_KEY: ${{ secrets.OCI_PRIVATE_KEY }}
-        PUBLIC_KEY: ${{ secrets.OCI_PUBLIC_KEY }}  
-        REMOTE_HOST: ${{ secrets.REMOTE_HOST }}
-      run: | 
-        echo "$PRIVATE_KEY" > private_key && chmod 600 private_key
-        echo "$PUBLIC_KEY" > public_key 
-        bash -c "$DEPLOY_SCRIPT"
+    # - name: Deploy to OCI Compute
+    #   env:
+    #     DEPLOY_SCRIPT: ${{ secrets.DEPLOY_SCRIPT }} 
+    #     PRIVATE_KEY: ${{ secrets.OCI_PRIVATE_KEY }}
+    #     PUBLIC_KEY: ${{ secrets.OCI_PUBLIC_KEY }}  
+    #     REMOTE_HOST: ${{ secrets.REMOTE_HOST }}
+    #   run: | 
+    #     echo "$PRIVATE_KEY" > private_key && chmod 600 private_key
+    #     echo "$PUBLIC_KEY" > public_key 
+    #     bash -c "$DEPLOY_SCRIPT"
+    - name: Copy to Remote Server
+      uses: pierrickdelrieu/scp-action@v0.1.1
+      with:
+        host: ${{ secrets.REMOTE_HOST }}
+        ssh_username: ${{ secrets.SSH_USERNAME }}
+        ssh_key: ${{ secrets.OCI_PRIVATE_KEY }}
+        source_dir: /home/runner/work/personal_website/personal_website/next-app
+        destination_dir: /home/pranavajk/web/pranavajk.com/public_html
+        rm: true
