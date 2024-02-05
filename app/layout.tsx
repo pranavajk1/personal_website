@@ -6,12 +6,12 @@ import { Analytics } from "./components/analytics";
 
 export const metadata: Metadata = {
   title: {
-    default: "pranavajk.com",
-    template: "%s | pranavajk.com",
+    default: "Pranava",
+    template: "%s | Pranava",
   },
   description: "Full Stack Dev and AI trailblazer innovating for the future",
   openGraph: {
-    title: "pranavajk.com",
+    title: "Pranava",
     description:
       "Full Stack Dev and AI trailblazer innovating for the future",
     url: "https://pranavajk.com",
@@ -42,7 +42,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
   },
   icons: {
-    shortcut: "/favicon.png",
+    shortcut: "/personal.png",
   },
 };
 const inter = Inter({
