@@ -1,18 +1,10 @@
 "use client";
 import { Navigation } from "../components/nav";
-import { useEffect, useState } from "react";
 import Timeline from "../components/timeline";
 
 
 export default function Work() {
 
-  const [showTimelineDelay, setShowTimelineDelay] = useState(false);
-
-  useEffect(() => {
-    setTimeout(() => {
-      setShowTimelineDelay(true);
-    }, 200);
-  }, []);
 
   return (
     <div className="relative pb-16">
@@ -24,7 +16,7 @@ export default function Work() {
           </h2>
           <p className="mt-4 text-zinc-400">Here is what I have been upto</p>
         </div>
-        {showTimelineDelay && (<Timeline />)}
+        <Timeline />
       </div>
     </div>
   );

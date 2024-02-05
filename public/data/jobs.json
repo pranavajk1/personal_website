@@ -1,0 +1,18 @@
+[
+  {
+    "id": 1,
+    "company": "Promethium Inc.",
+    "role": "Software Developer",
+    "type": "Full Time",
+    "startDate": "May 2023",
+    "endDate": "Present",
+    "logo": "promethiumLogo.png",
+    "descriptions": [
+      "As a software developer at Promethium, I had the opportunity to work on impactful features that enabled more intuitive data analytics and visualization capabilities on our platform. My primary focus was on developing and integrating conversational interfaces using natural language processing to empower users to seamlessly explore and gain insights from data.",
+      "To achieve this, I first leveraged the RASA open source framework to architect a sophisticated conversational AI chatbot. Using RASA's libraries for natural language understanding and dialog management, I built the chatbot to understand user intents and context, ask clarifying questions, and guide users through complex data interactions.",
+      "I integrated this chatbot with a React-based front-end I developed to enable robust data visualization experiences. The React components I engineered allow users to visually explore the datasets and relationships defined through the conversational interface. I also implemented a natural language query parser that takes free-form user questions entered through the chatbot and automatically generates SQL queries against the underlying data sources",
+      "To facilitate scalable data ingestion from diverse sources, I built a React-based data integration feature that lets users select multiple sources and map fields. On the back-end, I leveraged AWS Beanstalk to securely and robustly load combined datasets into our Trino data warehouse for analysis.",
+      "Overall, my work at Promethium allowed me to apply my skills in NLP, React, AWS, and other technologies to develop innovative conversational Analytics that empowers users to unlock impactful insights from data through intuitive interfaces."
+    ]
+  }
+]
