@@ -1,18 +1,18 @@
 name: Personal Website OCI CI
 
 on:
-  push: 
+  push:
     branches: [ main ]
   workflow_dispatch:
-    inputs: 
+    inputs:
       logLevel:
-        description: 'Log level'     
+        description: 'Log level'
         required: true
         default: 'warning'
       tags:
         description: 'Test scenario tags'
 
-jobs: 
+jobs:
   build:
     runs-on: ubuntu-latest
     steps:
@@ -23,13 +23,13 @@ jobs:
       with:
         node-version: 20
 
-    - name: Install dependencies  
+    - name: Install dependencies
       run: npm install
 
     - name: Build
       run: npm run build
 
-    - name: Upload artifact  
+    - name: Upload artifact
       uses: actions/upload-artifact@v3
       with:
         name: next-app
@@ -44,7 +44,7 @@ jobs:
 
     - name: Download artifact
       uses: actions/download-artifact@v3
-      with: 
+      with:
         name: next-app
         path: ./next-app
 
@@ -58,7 +58,7 @@ jobs:
         source: "./next-app/*,package.json,next.config.mjs,public/*"
         target: /home/ubuntu/personal-website
         rm: true
-        
+
     - name: multiple command
       uses: appleboy/ssh-action@v1.0.3
       with:
@@ -74,14 +74,3 @@ jobs:
           pm2 stop npm
           npm install
           pm2 start npm -- start
-    # - name: Deploy to OCI Compute
-    #   env:
-    #     DEPLOY_SCRIPT: ${{ secrets.DEPLOY_SCRIPT }} 
-    #     PRIVATE_KEY: ${{ secrets.OCI_PRIVATE_KEY }}
-    #     PUBLIC_KEY: ${{ secrets.OCI_PUBLIC_KEY }}  
-    #     REMOTE_HOST: ${{ secrets.REMOTE_HOST }}
-    #   run: | 
-    #     echo "$PRIVATE_KEY" > private_key && chmod 600 private_key
-    #     echo "$PUBLIC_KEY" > public_key 
-    #     bash -c "$DEPLOY_SCRIPT"
-    
