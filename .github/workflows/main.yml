@@ -58,7 +58,19 @@ jobs:
         source: "./next-app/*,package.json,next.config.mjs,public/*"
         target: /home/ubuntu/personal-website
         rm: true
-
+        
+    - name: multiple command
+      uses: appleboy/ssh-action@v1.0.3
+      with:
+        host: ${{ secrets.REMOTE_HOST }}
+        username: ${{ secrets.SSH_USERNAME }}
+        key: ${{ secrets.OCI_PRIVATE_KEY }}
+        port: 22
+        script: |
+          cd /home/ubuntu/personal-website
+          pm2 stop npm
+          npm install
+          pm2 start npm -- start
     # - name: Deploy to OCI Compute
     #   env:
     #     DEPLOY_SCRIPT: ${{ secrets.DEPLOY_SCRIPT }} 
