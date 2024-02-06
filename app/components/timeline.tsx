@@ -3,9 +3,12 @@ import React, { useRef, useEffect, useState } from "react";
 import promethiumLogo from "public/blackLogoP.png";
 import accentureLogo from "public/accentureLogo.png";
 import macLogo from "public/macLogo.png";
+import promethiumWhiteLogo from "public/whiteLogoP.svg";
 import { SelectOutlined } from "@ant-design/icons";
 import { Modal } from "antd";
 import Image from "next/image";
+
+import "./styles.scss";
 
 export default function Timeline() {
   const [showPromethiumModal, setPromethiumShowModal] = useState(false);
@@ -143,7 +146,7 @@ export default function Timeline() {
         title={
           <div className="flex flex-row">
             <Image
-              src={promethiumLogo}
+              src={promethiumWhiteLogo}
               alt="Promethium Logo"
               height={25}
               style={{ marginRight: "10px" }}
